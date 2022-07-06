@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    let actuallyDate = Date()
+    @StateObject var newsModel = NewsViewModel()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Text("\(actuallyDate)").onAppear(){
+            newsModel.loadResultNews()
+            }
     }
 }
 
