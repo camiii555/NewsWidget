@@ -9,6 +9,8 @@ import Foundation
 
 class NewsViewModel: ObservableObject {
     
+    @Published var newsData = NewsModel(articles: [])
+    
     init() {
         loadResultNews()
     }
@@ -18,7 +20,7 @@ class NewsViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let paramDate = dateFormatter.string(from: ActuallyDate)
         let apiKey = "34d304d29222407c82b886c4b5029ee5"
@@ -43,9 +45,9 @@ class NewsViewModel: ObservableObject {
                 return
             }
             do {
-                let json = try JSONDecoder().decode(News.self, from: data)
+                let json = try JSONDecoder().decode(NewsModel.self, from: data)
                 DispatchQueue.main.async {
-                    print(json)
+                    self.newsData = json
                 }
                 
             } catch let error as NSError {

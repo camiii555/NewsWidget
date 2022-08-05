@@ -8,29 +8,18 @@
 import Foundation
 
 // MARK: - News
-struct News: Codable {
-    let articles: [Article]
+struct NewsModel: Codable {
+    var articles: [Article]
 }
 
 // MARK: - Article
 struct Article: Codable {
-    let source: Source
     let author: String?
-    let title, articleDescription: String
-    let url: String
+    let title: String
     let urlToImage: String?
     let publishedAt: String
-    let content: String
 
     enum CodingKeys: String, CodingKey {
-        case source, author, title
-        case articleDescription = "description"
-        case url, urlToImage, publishedAt, content
+        case author, title, urlToImage, publishedAt
     }
-}
-
-// MARK: - Source
-struct Source: Codable {
-    let id: String?
-    let name: String
 }

@@ -8,17 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    let actuallyDate = Date()
-    @StateObject var newsModel = NewsViewModel()
     var body: some View {
-        Text("\(actuallyDate)").onAppear(){
-            newsModel.loadResultNews()
-            }
+        HomeNews()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+
